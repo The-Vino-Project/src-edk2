@@ -7,9 +7,7 @@
  *      Chloe Pinrip
  */
 
-#include <Uefi.h>
-#include <Library/UefiLib.h>
-#include <Library/UefiBootServicesTableLib.h>
+#include <boot/bootlib.h>
 
 EFI_STATUS
 EFIAPI
