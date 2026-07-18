@@ -10,7 +10,11 @@
 #ifndef _EXE_PE_H_
 #define _EXE_PE_H_ 1
 
+#if defined(_BOOT_SOURCE)
+#include <sdk/ntdef.h>
+#else
 #include <ntdef.h>
+#endif
 
 /*
  * Describes the portable executable header

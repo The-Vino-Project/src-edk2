@@ -36,10 +36,14 @@
  * Basic types
  */
 
-#if defined(_NT_TYPES)
 /* Basic types */
+#ifndef VOID
 typedef void VOID;
+#endif
+
+#ifdef _NT_SOURCE
 typedef _Bool BOOLEAN;
+#endif  /* !_NT_SOURCE */
 
 /* Basic signed types */
 typedef char CHAR;
@@ -66,9 +70,7 @@ typedef UCHAR     *PUCHAR;
 typedef USHORT    *PUSHORT;
 typedef ULONG     *PULONG;
 typedef ULONGLONG *PULONGLONG;
-typedef LOGICAL   *PLOGICAL;
 typedef BOOLEAN   *PBOOLEAN;
-#endif  /* !_NT_TYPES */
 
 /*
  * Convenience macros

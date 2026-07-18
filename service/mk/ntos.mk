@@ -20,4 +20,5 @@ NTOS_CFLAGS =						\
 	-target $(CC_TARGET)			\
 	-ffreestanding					\
 	-nostdlib						\
-	-I$(NT_PROJECT_ROOT)/sdk/head
+	-I$(NT_PROJECT_ROOT)/sdk/head	\
+	-D_NT_SOURCE
