@@ -17,6 +17,18 @@ BmEntry(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
     gST = SystemTable;
     gImageHandle = gImageHandle;
 
+    /*
+     * First we should ensure the watchdog timer is disabled so the system doesn't
+     * suddenly restart. This should not happen after we exit boot services but it
+     * is good to be careful.
+     */
+    gBS->SetWatchdogTimer(
+        0,
+        0,
+        0,
+        NULL
+    );
+
     /* Reset the console */
     gST->ConOut->Reset(
         gST->ConOut,
