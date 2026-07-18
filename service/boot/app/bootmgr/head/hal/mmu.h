@@ -18,6 +18,8 @@
 #define PAGE_WRITE  BIT(0)
 #define PAGE_EXEC   BIT(1)
 
+#define PAGESIZE 4096
+
 /*
  * Read the virtual address space
  *
