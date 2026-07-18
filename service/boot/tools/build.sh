@@ -30,6 +30,8 @@ build_edk2() {
     fi
 
     build -a X64 -t GCC -p bootmgr/ntldr.dsc
+    cp edk2/Build/MdeModule/DEBUG_GCC/X64/bootmgr.efi \
+        $NT_PROJECT_ROOT/artifacts/BOOTX64.EFI
 }
 
 build_edk2
