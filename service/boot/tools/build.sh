@@ -9,6 +9,12 @@
 #       Chloe Pinrip
 #
 
+sync_sdk() {
+    mkdir -p app/bootmgr/head/sdk/
+    rsync -avr $NT_PROJECT_ROOT/sdk/head/* \
+        app/bootmgr/head/sdk
+}
+
 build_edk2() {
     git clone https://github.com/tianocore/edk2.git
     export WORKSPACE=$PWD/edk2
@@ -34,4 +40,5 @@ build_edk2() {
         $NT_PROJECT_ROOT/artifacts/BOOTX64.EFI
 }
 
+sync_sdk
 build_edk2
