@@ -50,7 +50,7 @@ MmuTlbFlushSingle(UINT64 VirtualBase)
     asm volatile(
         "invlpg %0"
         :
-        : "r" (VirtualBase)
+        : "m" (VirtualBase)
         : "memory"
     );
 }
