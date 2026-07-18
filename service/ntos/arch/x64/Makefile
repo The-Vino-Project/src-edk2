@@ -10,6 +10,7 @@
 include ../../../mk/ntos.mk
 
 ASMFILES = $(shell find . -name "*.S")
+OFILES = $(shell find ../../ -name "*.o" | grep -v "arch")
 ASMOFILES = $(ASMFILES:.S=.S.o)
 ASMDFILES = $(ASMFILES:.S=.S.d)
 
@@ -34,6 +35,7 @@ $(KERNEL_OUTPUT): $(ASMOFILES)
 		-Wl,/fixed:no			\
 		-Wl,/dynamicbase		\
 		$(ASMOFILES) 			\
+		$(OFILES)				\
 		-o $@
 
 %.S.o: %.S

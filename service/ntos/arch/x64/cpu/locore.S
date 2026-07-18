@@ -9,7 +9,13 @@
 
     .text
     .globl BspStart
+    .extern NtP1Init
 BspStart:
     cli
+    cld
+    xor %rbp, %rbp
+    call NtP1Init
+    mfence
+1:  cli
     hlt
-    jmp BspStart
+    jmp 1b

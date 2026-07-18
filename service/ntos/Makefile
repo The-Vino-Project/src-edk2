@@ -8,7 +8,11 @@
 #
 
 .PHONY: all
-all: machine
+all: ke machine
+
+.PHONY: ke
+ke:
+	cd ke/; $(MAKE)
 
 .PHONY: machine
 machine:
