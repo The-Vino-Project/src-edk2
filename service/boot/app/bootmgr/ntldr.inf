@@ -11,6 +11,8 @@
     core/memmap.c
     core/hcf.c
     core/loader.c
+[Sources.X64]
+    arch/x64/mmu.c
 [Packages]
     MdePkg/MdePkg.dec
     bootmgr/ntldr.dec

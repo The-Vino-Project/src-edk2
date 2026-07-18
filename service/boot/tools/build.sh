@@ -15,6 +15,12 @@ sync_sdk() {
         app/bootmgr/head/sdk
 }
 
+sync_machhdr() {
+    mkdir -p app/bootmgr/head/target/machine
+    rsync -avr app/bootmgr/head/arch/$NT_TARGET_ARCH/* \
+        app/bootmgr/head/target/machine
+}
+
 build_edk2() {
     git clone https://github.com/tianocore/edk2.git
     export WORKSPACE=$PWD/edk2
@@ -41,4 +47,5 @@ build_edk2() {
 }
 
 sync_sdk
+sync_machhdr
 build_edk2

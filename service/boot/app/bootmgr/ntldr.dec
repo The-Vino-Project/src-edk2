@@ -1,3 +1,4 @@
 [Includes]
     head
+    head/target
 [Defines]
