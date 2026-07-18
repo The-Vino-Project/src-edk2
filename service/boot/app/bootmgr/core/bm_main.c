@@ -17,5 +17,11 @@ BmEntry(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
     gST = SystemTable;
     gImageHandle = gImageHandle;
 
+    /* Reset the console */
+    gST->ConOut->Reset(
+        gST->ConOut,
+        TRUE
+    );
+
     for (;;);
 }
