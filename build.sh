@@ -55,6 +55,10 @@ build() {
     fi
 
     make_build          \
+        service/ntos/   \
+        "Building kernel..."
+
+    make_build          \
         service/boot/   \
         "Building bootloader..."
 
