@@ -10,6 +10,7 @@
     core/bm_main.c
     core/memmap.c
     core/hcf.c
+    core/loader.c
 [Packages]
     MdePkg/MdePkg.dec
     bootmgr/ntldr.dec

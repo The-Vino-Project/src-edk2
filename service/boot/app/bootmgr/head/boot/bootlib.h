@@ -24,4 +24,9 @@ extern VOID *gKernelImage;
  */
 VOID BootHcf(VOID);
 
+/*
+ * Load the kernel image into memory
+ */
+EFI_STATUS BootLoadKernel(VOID);
+
 #endif  /* !_BOOTLIB_H_ */

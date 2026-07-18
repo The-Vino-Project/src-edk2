@@ -143,5 +143,10 @@ BmEntry(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
         BootHcf();
     }
 
+    Status = BootLoadKernel();
+    if (EFI_ERROR(Status)) {
+        BootHcf();
+    }
+
     for (;;);
 }
