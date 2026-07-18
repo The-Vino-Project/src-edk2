@@ -13,6 +13,10 @@
 #include <Uefi.h>
 #include <Library/UefiLib.h>
 #include <Library/UefiBootServicesTableLib.h>
+#include <Protocol/LoadedImage.h>
+
+/* Externs */
+extern EFI_FILE_HANDLE gBootVolume;
 
 /*
  * Halt and catch fire if something goes wrong

@@ -6,6 +6,7 @@
     VERSION_STRING = 1.0
     ENTRY_POINT = BmEntry
 [Sources]
+    core/file.c
     core/bm_main.c
     core/memmap.c
     core/hcf.c

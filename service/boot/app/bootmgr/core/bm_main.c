@@ -8,11 +8,17 @@
  */
 
 #include <boot/bootlib.h>
+#include <boot/file.h>
+
+/* Globals */
+EFI_FILE_HANDLE gBootVolume;
 
 EFI_STATUS
 EFIAPI
 BmEntry(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
+    EFI_STATUS Status;
+
     gBS = SystemTable->BootServices;
     gST = SystemTable;
     gImageHandle = gImageHandle;
@@ -34,6 +40,13 @@ BmEntry(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
         gST->ConOut,
         TRUE
     );
+
+    /* Obtain the boot volume */
+    Status = GetBootVolume(&gBootVolume);
+    if (EFI_ERROR(Status)) {
+        Print(L"Failed to obtain boot volume\n");
+        BootHcf();
+    }
 
     for (;;);
 }
