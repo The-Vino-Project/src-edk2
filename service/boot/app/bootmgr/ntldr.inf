@@ -1,0 +1,14 @@
+[Defines]
+    INF_VERSION = 1.25
+    BASE_NAME = bootmgr
+    FILE_GUID = 12378acb-5b82-4496-b5d3-98ae34953c5e
+    MODULE_TYPE = UEFI_APPLICATION
+    VERSION_STRING = 1.0
+    ENTRY_POINT = BmEntry
+[Sources]
+    core/bm_main.c
+[Packages]
+    MdePkg/MdePkg.dec
+[LibraryClasses]
+    UefiApplicationEntryPoint
+    UefiLib
