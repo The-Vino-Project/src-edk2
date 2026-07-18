@@ -40,6 +40,7 @@ typedef struct {
     ULONG SizeOfCode;
     ULONG SizeOfInitializedData;
     ULONG SizeOfUninitializedData;
+    ULONG AddressOfEntryPoint;
     ULONG BaseOfCode;
     ULONGLONG ImageBase;
     ULONG SectionAlignment;
