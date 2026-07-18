@@ -9,6 +9,7 @@
 
 #include <boot/bootlib.h>
 #include <boot/file.h>
+#include <boot/memsv.h>
 
 /* Fallback path if not found in BCD */
 #define KERNEL_FALLBACK_PATH L"ntoskrnl.sys"
@@ -108,6 +109,8 @@ EFIAPI
 BmEntry(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
     EFI_STATUS Status;
+    UINT64 EntryPoint;
+    MEMORY_SNAPSHOT MemorySnapshot;
 
     gBS = SystemTable->BootServices;
     gST = SystemTable;
@@ -134,7 +137,7 @@ BmEntry(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
     /* Obtain the boot volume */
     Status = GetBootVolume(&gBootVolume);
     if (EFI_ERROR(Status)) {
-        Print(L"Failed to obtain boot volume\n");
+        Print(L"Failed to obtain boot volume\r\n");
         BootHcf();
     }
 
@@ -143,10 +146,28 @@ BmEntry(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
         BootHcf();
     }
 
-    Status = BootLoadKernel();
+    Status = BootLoadKernel(&EntryPoint);
     if (EFI_ERROR(Status)) {
         BootHcf();
     }
 
-    for (;;);
+    Status = GetMemoryMap(&MemorySnapshot);
+    if (EFI_ERROR(Status)) {
+        Print(L"Failed to btain memory map\r\n");
+        BootHcf();
+    }
+
+    /* Now we get the hell out of here */
+    Status = gBS->ExitBootServices(
+        gImageHandle,
+        MemorySnapshot.MapKey
+    );
+
+    if (EFI_ERROR(Status)) {
+        Print(L"Failed to exit boot services\r\n");
+        BootHcf();
+    }
+
+    ((VOID(*)(VOID))EntryPoint)();
+    __builtin_unreachable();
 }

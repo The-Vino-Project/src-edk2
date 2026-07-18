@@ -27,7 +27,9 @@ VOID BootHcf(VOID);
 
 /*
  * Load the kernel image into memory
+ *
+ * @EntryPoint:  Entry point is written here
  */
-EFI_STATUS BootLoadKernel(VOID);
+EFI_STATUS BootLoadKernel(OUT UINT64 *EntryPoint);
 
 #endif  /* !_BOOTLIB_H_ */

@@ -14,7 +14,7 @@
 #include <hal/mmu.h>
 
 EFI_STATUS
-BootLoadKernel(VOID)
+BootLoadKernel(OUT UINT64 *EntryPoint)
 {
     PPE32_HEADER PeHeader;
     PPE32P_SECTION_HEADER SectionHeaderBase;
@@ -27,6 +27,10 @@ BootLoadKernel(VOID)
     UINT8 *Source, *Dest;
     MMU_VAS Vas;
     EFI_STATUS Status;
+
+    if (EntryPoint == NULL) {
+        return EFI_INVALID_PARAMETER;
+    }
 
     PeHeaderOff = PTR_OFFSET(gKernelImage, PE_E_LFANEW_OFF);
     PeHeader = PTR_OFFSET(gKernelImage, *PeHeaderOff);
@@ -82,7 +86,7 @@ BootLoadKernel(VOID)
         }
     }
 #undef SECTION_HEADER
-
     Print(L"Image loaded OK\r\n");
+    *EntryPoint = (UPTR)PTR_OFFSET(gKernelImage, OptHeader->AddressOfEntryPoint);
     return EFI_SUCCESS;
 }
