@@ -14,4 +14,9 @@
 #include <Library/UefiLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 
+/*
+ * Halt and catch fire if something goes wrong
+ */
+VOID BootHcf(VOID);
+
 #endif  /* !_BOOTLIB_H_ */

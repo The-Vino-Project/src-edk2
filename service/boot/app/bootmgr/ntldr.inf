@@ -8,6 +8,7 @@
 [Sources]
     core/bm_main.c
     core/memmap.c
+    core/hcf.c
 [Packages]
     MdePkg/MdePkg.dec
     bootmgr/ntldr.dec
