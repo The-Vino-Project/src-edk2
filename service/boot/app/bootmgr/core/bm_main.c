@@ -11,7 +11,11 @@
 
 EFI_STATUS
 EFIAPI
-BmEntry(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE* SystemTable)
+BmEntry(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
+    gBS = SystemTable->BootServices;
+    gST = SystemTable;
+    gImageHandle = gImageHandle;
+
     for (;;);
 }
