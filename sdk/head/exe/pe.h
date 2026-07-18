@@ -64,6 +64,9 @@ typedef struct {
     ULONG NumberOfRvaAndSizes;
 } PE32P_OPT_HEADER, *PPE32P_OPT_HEADER;
 
+/* Offset of e_lfanew */
+#define PE_E_LFANEW_OFF 0x3C
+
 /* "PE\0\0" */
 #define PE_HEADER_MAGIC 0x00004550
 
