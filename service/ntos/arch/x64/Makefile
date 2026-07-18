@@ -25,7 +25,16 @@ all: $(KERNEL_OUTPUT)
 
 .PHONY: $(KERNEL_OUTPUT)
 $(KERNEL_OUTPUT): $(ASMOFILES)
-	$(LD) -Tdev/link.ld $(ASMOFILES) -o $@
+	$(CC) 						\
+		$(CFLAGS) 				\
+		-fuse-ld=lld 			\
+		-Wl,/subsystem:native	\
+		-Wl,/entry:BspStart		\
+		-Wl,/base:0x100000		\
+		-Wl,/fixed:no			\
+		-Wl,/dynamicbase		\
+		$(ASMOFILES) 			\
+		-o $@
 
 %.S.o: %.S
 	$(CC) -c $(CFLAGS) $< -o $@
