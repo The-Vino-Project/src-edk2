@@ -17,6 +17,7 @@
 
 /* Externs */
 extern EFI_FILE_HANDLE gBootVolume;
+extern VOID *gKernelImage;
 
 /*
  * Halt and catch fire if something goes wrong
