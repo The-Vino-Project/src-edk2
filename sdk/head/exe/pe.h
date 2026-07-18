@@ -64,6 +64,20 @@ typedef struct {
     ULONG NumberOfRvaAndSizes;
 } PE32P_OPT_HEADER, *PPE32P_OPT_HEADER;
 
+/*
+ * Describes a PE32+ section header
+ */
+typedef struct {
+    CHAR Name[8];
+    ULONG VirtualSize;
+    ULONG VirtualAddress;
+    ULONG SizeOfRawData;
+    ULONG PointerToRawData;
+    USHORT NumberOfRelocations;
+    USHORT NumberOfLineNumbers;
+    ULONG Characteristics;
+} PE32P_SECTION_HEADER, *PPE32P_SECTION_HEADER;
+
 /* Offset of e_lfanew */
 #define PE_E_LFANEW_OFF 0x3C
 
